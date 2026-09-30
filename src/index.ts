@@ -37,3 +37,9 @@ const libroSchema = new mongoose.Schema<ILibro>({
 // modelo del libro
 
 const Libro = mongoose.model("libro", libroSchema)
+
+// validar ID
+
+const validateId = (id: string) => {
+    return mongoose.Types.ObjectId.isValid(id)
+}
