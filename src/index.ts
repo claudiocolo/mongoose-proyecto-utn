@@ -43,3 +43,29 @@ const Libro = mongoose.model("libro", libroSchema)
 const validateId = (id: string) => {
     return mongoose.Types.ObjectId.isValid(id)
 }
+
+// READ - leer todos
+
+const showLibros = async () => {
+    return await Libro.find()
+}
+
+// READ - leer uno
+
+const getLibro = async (id: string | undefined) => {
+    if (!id) {
+        return "ID es requerido"
+    }
+
+    if (!validateId(id)) {
+        return "ID es invalido"
+    }
+
+    const foundLibro = await Libro.findById(id)
+
+    if (!foundLibro) {
+        return "Libro no encontrado"
+    }
+
+    return foundLibro
+}
