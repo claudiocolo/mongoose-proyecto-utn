@@ -79,3 +79,42 @@ const createLibro = async (data: ILibro) => {
     return await newLibro.save()
 
 }
+
+// UPDATE
+
+const updateLibro = async (id: string | undefined, updates: string[]) => {
+    if (!id) {
+        return "ID es requerido"
+    }
+
+    if (!validateId(id)) {
+        return "ID es invalido"
+    }
+
+    if (updates.length < 4) {
+        return "Faltan datos para actualizar el libro"
+    }
+
+    const libroUpdated = await Libro.findByIdAndUpdate(
+        id,
+
+        {
+            titulo: updates[0],
+            autor: updates[1],
+            precio: Number(updates[2]),
+            stock: Number(updates[3])
+        },
+
+        {
+            new: true
+        }
+
+    )
+
+    if (!libroUpdated) {
+        return "Libro no encontrado"
+    }
+
+    return libroUpdated
+
+}
