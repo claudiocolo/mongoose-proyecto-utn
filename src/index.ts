@@ -138,3 +138,108 @@ const deleteLibro = async (id: string | undefined) => {
 
     return "Libro eliminado correctamente"
 }
+
+const main = async () => {
+
+    await connectDb(URI_DB)
+
+    switch (action) {
+
+        case "info":
+
+            console.log(`
+                create "titulo" "autor" precio stock
+                read
+                read ID
+                update ID "titulo" "autor" precio stock
+                delete ID
+            `)
+
+            break
+
+        // Crear
+
+        case "create": {
+
+            if (
+                !args[1] ||
+                !args[2] ||
+                !args[3] ||
+                !args[4]
+            ) {
+
+                console.log(
+                    'Uso: create "titulo" "autor" precio stock'
+                )
+
+                break
+            }
+
+            const data: ILibro = {
+                titulo: args[1],
+                autor: args[2],
+                precio: Number(args[3]),
+                stock: Number(args[4])
+            }
+
+            console.log(await createLibro(data))
+
+            break
+        }
+
+        // Leer
+
+        case "read":
+
+            if (args[1]) {
+                console.log(await getLibro(args[1]))
+            } else {
+                console.log(await showLibros())
+            }
+
+            break
+
+        // Actualizar
+
+        case "update": {
+
+            const id = args[1]
+
+            const updates = args.slice(2)
+
+            console.log(await updateLibro(id, updates))
+
+            break
+        }
+
+        // Borrar
+
+        case "delete": {
+
+            const id = args[1]
+
+            console.log(await deleteLibro(id))
+
+            break
+        }
+
+        // Comando invalido
+
+default:
+
+    console.log(`
+        Comando no válido.
+
+        Comandos disponibles:
+        create "titulo" "autor" precio stock
+        read
+        read ID
+        update ID "titulo" "autor" precio stock
+        delete ID
+    `)
+    }
+
+    await mongoose.disconnect()
+}
+
+main()
