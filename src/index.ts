@@ -69,3 +69,13 @@ const getLibro = async (id: string | undefined) => {
 
     return foundLibro
 }
+
+// CREATE
+
+const createLibro = async (data: ILibro) => {
+
+    const newLibro = new Libro(data)
+
+    return await newLibro.save()
+
+}
