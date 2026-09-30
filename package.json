@@ -1,0 +1,23 @@
+{
+  "name": "mongoose",
+  "version": "1.0.0",
+  "description": "Proyecto parcial de MongoDb",
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "node ./src/index.ts",
+    "start": "node ./dist/index.js",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^18.0.5",
+    "mongoose": "^9.10.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "typescript": "^7.0.2"
+  }
+}
