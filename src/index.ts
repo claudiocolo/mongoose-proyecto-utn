@@ -16,9 +16,20 @@ const connectDb = async (URI: string) => {
 const args = process.argv.splice(2)
 const action = args[0]
 
+// Interfaz del libro
+
 interface ILibro {
     titulo: string
     autor: string
     precio: number
     stock: number
 }
+
+// Schema para el libro
+
+const libroSchema = new mongoose.Schema<ILibro>({
+    titulo: String,
+    autor: String,
+    precio: Number,
+    stock: Number
+})
