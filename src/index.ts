@@ -118,3 +118,23 @@ const updateLibro = async (id: string | undefined, updates: string[]) => {
     return libroUpdated
 
 }
+
+// DELETE
+
+const deleteLibro = async (id: string | undefined) => {
+    if (!id) {
+        return "ID es requerido"
+    }
+
+    if (!validateId(id)) {
+        return "ID es invalido"
+    }
+
+    const libroDeleted = await Libro.findByIdAndDelete(id)
+
+    if (!libroDeleted) {
+        return "Libro no encontrado"
+    }
+
+    return "Libro eliminado correctamente"
+}
