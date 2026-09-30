@@ -33,3 +33,7 @@ const libroSchema = new mongoose.Schema<ILibro>({
     precio: Number,
     stock: Number
 })
+
+// modelo del libro
+
+const Libro = mongoose.model("libro", libroSchema)
