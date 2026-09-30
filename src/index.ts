@@ -12,3 +12,13 @@ const connectDb = async (URI: string) => {
         console.log("Error al conectar a MongoDB")
     }
 }
+
+const args = process.argv.splice(2)
+const action = args[0]
+
+interface ILibro {
+    titulo: string
+    autor: string
+    precio: number
+    stock: number
+}
